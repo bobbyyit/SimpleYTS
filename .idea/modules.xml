@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SimpleYTS.iml" filepath="$PROJECT_DIR$/.idea/modules/SimpleYTS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SimpleYTS_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SimpleYTS_main.iml" group="SimpleYTS" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SimpleYTS_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SimpleYTS_test.iml" group="SimpleYTS" />
+    </modules>
+  </component>
+</project>
