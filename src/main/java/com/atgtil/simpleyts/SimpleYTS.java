@@ -3,6 +3,7 @@ package com.atgtil.simpleyts;
 import com.atgtil.simpleyts.handler.SimpleYTSHandler;
 import com.vtence.cli.CLI;
 import com.vtence.cli.args.Args;
+import ratpack.handling.Chain;
 import ratpack.server.BaseDir;
 import ratpack.server.RatpackServer;
 
@@ -29,7 +30,10 @@ public class SimpleYTS { private final String host;
                         .handlers(
                                 chain -> {
                                     chain
-                                            .get(new SimpleYTSHandler());
+                                            .get(new SimpleYTSHandler())
+
+                                            .prefix("css", ctx -> ctx.fileSystem("css", Chain::files))
+                                            .prefix("js", ctx -> ctx.fileSystem("js", Chain::files));
                                 }
                         )
         );
