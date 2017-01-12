@@ -1,0 +1,58 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "io.ratpack:ratpack-gradle:1.4.3"
+    classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
+  }
+}
+
+apply plugin: "io.ratpack.ratpack-java"
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: "idea"
+apply plugin: 'ivy-publish'
+
+repositories {
+  jcenter()
+  ivy {
+    url 'http://artifactory.dev.stw/artifactory/td-libraries'
+  }
+
+}
+
+dependencies {
+  // Default SLF4J binding.  Note that this is a blocking implementation.
+  // See here for a non blocking appender http://logging.apache.org/log4j/2.x/manual/async.html
+  runtime 'org.slf4j:slf4j-simple:1.7.21'
+  compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+  compile 'com.samskivert:jmustache:1.12'
+  compile "com.vtence.cli:cli:1.1"
+
+}
+
+def buildNumber = hasProperty('buildNumber') ? buildNumber : '0'
+version = '1.0.' + buildNumber
+group 'atgtil'
+mainClassName = "com.atgtil.simpleyts.SimpleYTS"
+
+shadowJar {
+  classifier = ""
+}
+publishing {
+  publications {
+    ivy(IvyPublication) {
+      from components.shadow
+
+    }
+  }
+  repositories {
+    ivy {
+      credentials {
+        username 'jenkins'
+        password '6bit4hob'
+      }
+      url 'http://artifactory.dev.stw/artifactory/td-libraries'
+    }
+  }
+}
